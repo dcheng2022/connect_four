@@ -12,7 +12,7 @@ class ConnectFour
   def print_board
     puts "       1   2   3   4   5   6   7\n     —————————————————————————————"
     @@board.each_with_index do |row, idx|
-      print "  #{(idx + 65).chr}  | "
+      print '     | '
       row.each { |slot| print "#{slot} | " }
       print "\n     —————————————————————————————\n"
     end
