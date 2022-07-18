@@ -33,6 +33,11 @@ class ConnectFour
     pieces
   end
 
+  def game_draw?
+    slots = @@board.flatten
+    return true if slots.none? { |slot| slot == ' ' }
+  end
+
   private
 
   def print_board
