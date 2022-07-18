@@ -16,6 +16,12 @@ class ConnectFour
     end
   end
 
+  def pieces_in_column(column)
+    pieces = 0
+    @@board.each { |row| pieces += 1 if row[column - 1] == @color }
+    pieces
+  end
+
   private
 
   def print_board
