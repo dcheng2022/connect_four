@@ -7,10 +7,21 @@ class ConnectFour
     @color = color
   end
 
+  def place_piece
+    column = validate_input
+    column_pieces = pieces_in_column(column)
+    if column_pieces == 6
+      puts 'This column is full! Please select another column for your piece.'
+      return
+    end
+    @@board[5 - column_pieces, column - 1] = @color
+    [5 - column_pieces, column - 1]
+  end
+
   def validate_input
     loop do
-      input = gets.chomp
-      return input if (1..7).include?(input.to_i)
+      input = gets.chomp.to_i
+      return input if (1..7).include?(input)
 
       puts 'Invalid input! Please enter a number specifying your desired column.'
     end
