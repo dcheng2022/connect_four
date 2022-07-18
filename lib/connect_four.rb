@@ -7,6 +7,15 @@ class ConnectFour
     @color = color
   end
 
+  def validate_input
+    loop do
+      input = gets.chomp
+      return input if (1..7).include?(input.to_i)
+
+      puts 'Invalid input! Please enter a number specifying your desired column.'
+    end
+  end
+
   private
 
   def print_board
