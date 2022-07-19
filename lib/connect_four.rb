@@ -29,7 +29,7 @@ class ConnectFour
 
   def pieces_in_column(column)
     pieces = 0
-    @@board.each { |row| pieces += 1 if row[column - 1] == @color }
+    @@board.each { |row| pieces += 1 unless row[column - 1] == ' ' }
     pieces
   end
 
