@@ -56,19 +56,22 @@ class ConnectFour
       return true if matches == 4
     end
 
-    shift_array = [[-1, -1], [-1, 1], [1, -1], [1, 1]]
-    shift_array.each do |shift|
-      matches = 0
-      shift_row = row
-      shift_column = column
-      loop do
-        break unless (0..5).include?(shift_row) && (0..6).include?(shift_column)
+    shift_array = [[[-1, -1], [1, 1]], [[1, -1], [-1, 1]]]
+    shift_array.each do |shift_pair|
+      matches = 1
+      shift_pair.each do |shift|
+        shift_row = row
+        shift_column = column
+        loop do
+          shift_row += shift[0]
+          shift_column += shift[1]
+          break unless (0..5).include?(shift_row) && (0..6).include?(shift_column)
+          break unless @@board[shift_row][shift_column] == @color
 
-        matches = @@board[shift_row][shift_column] == @color ? matches + 1 : 0
-        shift_row += shift[0]
-        shift_column += shift[1]
+          matches += 1
+        end
+        return true if matches == 4
       end
-      return true if matches == 4
     end
     false
   end
