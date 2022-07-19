@@ -100,6 +100,7 @@ def game
   end
 end
 
-message = game ? "#{player.color} matched four markers and won!" : 'Drawn game! Better luck next time.'
+game_status = game
+message = game_status ? "#{game_status.color} matched four markers and won!" : 'Drawn game! Better luck next time.'
 ConnectFour.print_board
 puts message
