@@ -14,10 +14,6 @@ class ConnectFour
   def place_piece
     column = validate_input
     column_pieces = pieces_in_column(column)
-    if column_pieces == 6
-      puts 'This column is full! Please select another column for your piece.'
-      return
-    end
     @@board[5 - column_pieces][column - 1] = @color
     [5 - column_pieces, column - 1]
   end
@@ -25,9 +21,9 @@ class ConnectFour
   def validate_input
     loop do
       input = gets.chomp.to_i
-      return input if (1..7).include?(input)
+      return input if (1..7).include?(input) && pieces_in_column(input) < 6
 
-      puts 'Invalid input! Please enter a number specifying your desired column.'
+      puts 'Invalid column selection. Please try again.'
     end
   end
 
@@ -77,7 +73,7 @@ class ConnectFour
 
   private
 
-  def print_board
+  def self.print_board
     puts "       1   2   3   4   5   6   7\n     —————————————————————————————"
     @@board.each_with_index do |row, idx|
       print '     | '
