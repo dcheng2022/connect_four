@@ -3,6 +3,8 @@ require 'pry-byebug'
 class ConnectFour
   @@board = Array.new(6) { Array.new(7, ' ') }
 
+  attr_reader :color
+
   def initialize(color)
     @color = color
   end
@@ -82,3 +84,22 @@ class ConnectFour
     end
   end
 end
+
+def game
+  puts 'Connect Four is a two-player board game that revolves around putting four matching markers in a consecutive row, column, or diagonal.'
+  player_one = ConnectFour.new('O')
+  player_two = ConnectFour.new('X')
+  player = player_one
+  loop do
+    ConnectFour.print_board
+    print "#{player.color}'s turn: "
+    return player if player.game_win?
+    return if player.game_draw?
+
+    player = player == player_one ? player_two : player_one
+  end
+end
+
+message = game ? "#{player.color} matched four markers and won!" : 'Drawn game! Better luck next time.'
+ConnectFour.print_board
+puts message
